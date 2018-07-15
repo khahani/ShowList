@@ -13,8 +13,11 @@ import java.util.List;
 
 public class NumbersAdapter extends ArrayAdapter<String> {
 
-    public NumbersAdapter(@NonNull Context context, @NonNull List<String> numbers) {
+    private List<String> mStudents;
+
+    public NumbersAdapter(@NonNull Context context, @NonNull List<String> numbers, List<String> students) {
         super(context, 0, numbers);
+        mStudents = students;
     }
 
     @NonNull
@@ -28,10 +31,14 @@ public class NumbersAdapter extends ArrayAdapter<String> {
 
         // get data
         String number = getItem(position);
+        String student = mStudents.get(position);
 
         // retrieve layout textview and set number value
         TextView numberTextView = (TextView)convertView.findViewById(R.id.number);
         numberTextView.setText(number);
+
+        TextView studentTextView = (TextView) convertView.findViewById(R.id.student);
+        studentTextView.setText(student);
 
         return convertView;
     }
